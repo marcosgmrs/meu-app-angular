@@ -1,5 +1,10 @@
 <h1>Meu App Angular</h1>
 
+<div class="contador">
+  <p>Cliques: {{ contador }}</p>
+  <button (click)="incrementar()">Clique aqui</button>
+</div>
+
 @for (pessoa of pessoas; track pessoa.nome) {
   <app-card
     [nome]="pessoa.nome"

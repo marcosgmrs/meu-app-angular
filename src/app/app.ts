@@ -11,6 +11,13 @@ export class App {
   pessoas = [
     { nome: 'Marcos Guimarães', cargo: 'Desenvolvedor Angular', cidade: 'São Gonçalo, RJ' },
     { nome: 'Ana Silva', cargo: 'Desenvolvedora React', cidade: 'Rio de Janeiro, RJ' },
-    { nome: 'Carlos Santos', cargo: 'Desenvolvedor Vue', cidade: 'Niterói, RJ' }
+    { nome: 'Carlos Santos', cargo: 'Desenvolvedor Vue', cidade: 'Niterói, RJ' },
+    { nome: 'Julia Costa', cargo: 'Desenvolvedora Angular', cidade: 'Petrópolis, RJ' }
   ]
+
+  contador: number = 0
+
+  incrementar(): void {
+    this.contador++
+  }
 }
