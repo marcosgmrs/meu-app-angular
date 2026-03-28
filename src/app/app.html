@@ -3,6 +3,14 @@
 <div class="contador">
   <p>Cliques: {{ contador }}</p>
   <button (click)="incrementar()">Clique aqui</button>
+
+  @if (contador > 5) {
+    <p>Você clicou mais de 5 vezes!</p>
+  }
+
+  @if (contador > 10) {
+    <p>Mais de 10 cliques, uau!</p>
+  }
 </div>
 
 @for (pessoa of pessoas; track pessoa.nome) {
