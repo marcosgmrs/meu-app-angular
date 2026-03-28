@@ -18,7 +18,7 @@
   }
 </div>
 
-@for (pessoa of pessoas; track pessoa.nome) {
+@for (pessoa of pessoasFiltradas; track pessoa.nome) {
   <app-card
     [nome]="pessoa.nome"
     [cargo]="pessoa.cargo"

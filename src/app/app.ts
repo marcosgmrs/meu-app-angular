@@ -22,4 +22,13 @@ export class App {
   incrementar(): void {
     this.contador++
   }
+
+  get pessoasFiltradas() {
+    if (!this.nomeBusca) {
+      return this.pessoas
+    }
+    return this.pessoas.filter((pessoa) =>
+      pessoa.nome.toLowerCase().includes(this.nomeBusca.toLowerCase())
+    )
+  }
 }
