@@ -7,4 +7,10 @@ import { Card } from './components/card/card';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {}
+export class App {
+  pessoas = [
+    { nome: 'Marcos Guimarães', cargo: 'Desenvolvedor Angular', cidade: 'São Gonçalo, RJ' },
+    { nome: 'Ana Silva', cargo: 'Desenvolvedora React', cidade: 'Rio de Janeiro, RJ' },
+    { nome: 'Carlos Santos', cargo: 'Desenvolvedor Vue', cidade: 'Niterói, RJ' }
+  ]
+}

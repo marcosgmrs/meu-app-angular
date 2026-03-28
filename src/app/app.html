@@ -1,13 +1,9 @@
 <h1>Meu App Angular</h1>
 
-<app-card
-  nome="Marcos Guimarães"
-  cargo="Desenvolvedor Angular"
-  cidade="São Gonçalo, RJ">
-</app-card>
-
-<app-card
-  nome="Ana Silva"
-  cargo="Desenvolvedora React"
-  cidade="Rio de Janeiro, RJ">
-</app-card>
+@for (pessoa of pessoas; track pessoa.nome) {
+  <app-card
+    [nome]="pessoa.nome"
+    [cargo]="pessoa.cargo"
+    [cidade]="pessoa.cidade">
+  </app-card>
+}
