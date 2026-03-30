@@ -1,5 +1,6 @@
-<h1>Minhas Tarefas</h1>
+<nav>
+  <a routerLink="/">Home</a>
+  <a routerLink="/tarefas">Tarefas</a>
+</nav>
 
-@for (tarefa of tarefas; track tarefa.nome) {
-  <app-tarefa [tarefa]="tarefa"></app-tarefa>
-}
+<router-outlet></router-outlet>

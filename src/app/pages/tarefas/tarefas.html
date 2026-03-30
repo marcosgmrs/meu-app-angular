@@ -1,0 +1,7 @@
+<h2>Minhas Tarefas</h2>
+
+@for (tarefa of tarefas; track tarefa.nome) {
+  <app-tarefa [tarefa]="tarefa"></app-tarefa>
+}
+
+<a routerLink="/">Voltar</a>
