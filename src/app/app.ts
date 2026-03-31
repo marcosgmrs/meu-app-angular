@@ -1,10 +1,10 @@
 import { Component, signal, effect } from '@angular/core';
-import { RouterLink, RouterOutlet, NavigationEnd, Router } from '@angular/router';
+import { RouterLink, RouterOutlet, RouterLinkActive, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

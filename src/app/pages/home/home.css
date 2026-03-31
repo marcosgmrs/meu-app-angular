@@ -1,0 +1,104 @@
+.hero {
+  text-align: center;
+  padding: 80px 24px 64px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 20px;
+  color: var(--cor-primaria);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: var(--cor-texto);
+}
+
+.destaque {
+  color: var(--cor-primaria);
+}
+
+.subtitulo {
+  font-size: 18px;
+  color: var(--cor-texto-secundario);
+  max-width: 500px;
+  margin: 0 auto 40px;
+}
+
+.acoes {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-primario {
+  padding: 12px 28px;
+  background: var(--cor-primaria);
+  color: #fff;
+  border-radius: var(--raio);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-primario:hover {
+  background: var(--cor-primaria-hover);
+  color: #fff;
+}
+
+.btn-secundario {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  font-weight: 500;
+}
+
+.btn-secundario:hover {
+  background: var(--cor-fundo-hover);
+  color: var(--cor-texto);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 24px 64px;
+}
+
+.feature-card {
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 28px;
+  transition: border-color 0.2s;
+}
+
+.feature-card:hover {
+  border-color: var(--cor-primaria);
+}
+
+.icone {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--cor-texto);
+}
+
+.feature-card p {
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+  line-height: 1.6;
+}

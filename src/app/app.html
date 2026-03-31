@@ -1,12 +1,14 @@
 <nav>
-  <a routerLink="/">Home</a> . 
-  <a routerLink="/tarefas">Tarefas</a> . 
-  <a routerLink="/sobre">Sobre</a> . 
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+  <a routerLink="/tarefas" routerLinkActive="active">Tarefas</a>
+  <a routerLink="/sobre" routerLinkActive="active">Sobre</a>
   @if (estaLogado()) {
-    <a routerLink="/perfil">Perfil</a>
+    <a routerLink="/perfil" routerLinkActive="active">Perfil</a>
   } @else {
-    <a routerLink="/login">Login</a>
+    <a routerLink="/login" routerLinkActive="active">Login</a>
   }
 </nav>
 
-<router-outlet></router-outlet>
+<div class="conteudo">
+  <router-outlet></router-outlet>
+</div>

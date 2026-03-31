@@ -1,22 +1,65 @@
-<h2>Tarefas da API</h2>
+<div class="header-tarefas">
+  <h2>Minha jornada dev</h2>
+  @if (!carregando() && !erro()) {
+    <span class="badge">{{ todos().length }} tópicos</span>
+  }
+</div>
 
 @if (carregando()) {
-  <p>Carregando tarefas...</p>
+  <div class="carregando">
+    <span class="spinner">⚙</span>
+    <p>Carregando...</p>
+  </div>
 } @else if (erro()) {
-  <p class="erro">{{ erro() }}</p>
+  <div class="erro">{{ erro() }}</div>
 } @else {
-  <p>Total: {{ todos().length }} tarefas</p>
-
-  @for (todo of todos(); track todo.id) {
-    <div class="todo-item">
-      <span>{{ todo.title }}</span>
-      @if (todo.completed) {
-        <span>✅</span>
-      } @else {
-        <span>⏳</span>
+  <div class="secao">
+    <h3 class="categoria">Fundamentos</h3>
+    <div class="lista-tarefas">
+      @for (todo of todos(); track todo.id) {
+        @if (todo.categoria === 'Fundamentos') {
+          <div class="todo-item">
+            <span class="todo-titulo">{{ todo.title }}</span>
+            <span class="todo-status">
+              @if (todo.completed) { ✅ } @else { ⏳ }
+            </span>
+          </div>
+        }
       }
     </div>
-  }
+  </div>
+
+  <div class="secao">
+    <h3 class="categoria">Angular</h3>
+    <div class="lista-tarefas">
+      @for (todo of todos(); track todo.id) {
+        @if (todo.categoria === 'Angular') {
+          <div class="todo-item">
+            <span class="todo-titulo">{{ todo.title }}</span>
+            <span class="todo-status">
+              @if (todo.completed) { ✅ } @else { ⏳ }
+            </span>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="secao">
+    <h3 class="categoria">Avançado</h3>
+    <div class="lista-tarefas">
+      @for (todo of todos(); track todo.id) {
+        @if (todo.categoria === 'Avançado') {
+          <div class="todo-item">
+            <span class="todo-titulo">{{ todo.title }}</span>
+            <span class="todo-status">
+              @if (todo.completed) { ✅ } @else { ⏳ }
+            </span>
+          </div>
+        }
+      }
+    </div>
+  </div>
 }
 
-<a routerLink="/">Voltar</a>
+<a routerLink="/" class="btn-voltar">← Voltar</a>
