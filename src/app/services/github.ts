@@ -14,6 +14,16 @@ export interface GithubUsuario {
   html_url: string
 }
 
+export interface GithubRepo {
+  id: number
+  name: string
+  description: string
+  html_url: string
+  stargazers_count: number
+  language: string
+  updated_at: string
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -27,6 +37,15 @@ export class GithubService {
       catchError(erro => {
         console.error('Erro ao buscar dados do GitHub:', erro)
         return of(null)
+      })
+    )
+  }
+
+  getRepositorios() {
+    return this.http.get<GithubRepo[]>(`${this.apiUrl}/repos`).pipe(
+      catchError(erro => {
+        console.error('Erro ao buscar repositórios:', erro)
+        return of([])
       })
     )
   }

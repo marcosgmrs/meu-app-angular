@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { GithubService, GithubUsuario } from '../../services/github';
+import { GithubService, GithubUsuario, GithubRepo } from '../../services/github';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +11,36 @@ import { GithubService, GithubUsuario } from '../../services/github';
 export class Perfil implements OnInit {
   email = signal('')
   usuario = signal<GithubUsuario | null>(null)
+  repositorios = signal<GithubRepo[]>([])
   carregando = signal(true)
+  abaAtiva = signal('progresso')
+
+  topicos = [
+    { nome: 'Terminal e linha de comando', concluido: true, categoria: 'Fundamentos' },
+    { nome: 'Git e controle de versão', concluido: true, categoria: 'Fundamentos' },
+    { nome: 'JavaScript essencial', concluido: true, categoria: 'Fundamentos' },
+    { nome: 'TypeScript — tipos e interfaces', concluido: true, categoria: 'Fundamentos' },
+    { nome: 'Componentes Angular', concluido: true, categoria: 'Angular' },
+    { nome: 'Templates e interpolação', concluido: true, categoria: 'Angular' },
+    { nome: 'Property e event binding', concluido: true, categoria: 'Angular' },
+    { nome: 'Serviços e injeção de dependência', concluido: true, categoria: 'Angular' },
+    { nome: 'Rotas e navegação', concluido: true, categoria: 'Angular' },
+    { nome: 'HttpClient e APIs REST', concluido: true, categoria: 'Angular' },
+    { nome: 'Reactive Forms e validação', concluido: true, categoria: 'Angular' },
+    { nome: 'Guards de rota', concluido: true, categoria: 'Angular' },
+    { nome: 'RxJS e Observables', concluido: false, categoria: 'Avançado' },
+    { nome: 'Autenticação com JWT', concluido: false, categoria: 'Avançado' },
+    { nome: 'Testes unitários', concluido: false, categoria: 'Avançado' },
+    { nome: 'Deploy e CI/CD', concluido: false, categoria: 'Avançado' },
+  ]
+
+  get totalConcluidos() {
+    return this.topicos.filter(t => t.concluido).length
+  }
+
+  get percentual() {
+    return Math.round((this.totalConcluidos / this.topicos.length) * 100)
+  }
 
   constructor(
     private router: Router,
@@ -24,6 +53,13 @@ export class Perfil implements OnInit {
       this.usuario.set(dados)
       this.carregando.set(false)
     })
+    this.githubService.getRepositorios().subscribe((repos) => {
+      this.repositorios.set(repos)
+    })
+  }
+
+  trocarAba(aba: string): void {
+    this.abaAtiva.set(aba)
   }
 
   sair(): void {

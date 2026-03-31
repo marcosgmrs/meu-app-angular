@@ -5,41 +5,137 @@
       <span class="spinner">⚙</span>
       <p>Carregando perfil...</p>
     </div>
-  } @else if (usuario()) {
+  } @else {
     <div class="perfil-hero">
-      <img
-        [src]="usuario()!.avatar_url"
-        class="perfil-avatar"
-        alt="Foto de perfil do GitHub">
-      <div class="perfil-info">
-        <h2>{{ usuario()!.name }}</h2>
-        <p class="perfil-cargo">{{ usuario()!.bio || 'Desenvolvedor Front-end em formação' }}</p>
-        <p class="perfil-email">{{ email() }}</p>
-        <a [href]="usuario()!.html_url" target="_blank" rel="noopener noreferrer" class="perfil-github">
-          @github/{{ usuario()!.login }}
-        </a>
-      </div>
+      @if (usuario()) {
+        <img [src]="usuario()!.avatar_url" class="perfil-avatar" alt="Foto de perfil">
+        <div class="perfil-info">
+          <h2>{{ usuario()!.name }}</h2>
+          <p class="perfil-cargo">Desenvolvedor Front-end em formação</p>
+          <p class="perfil-email">{{ email() }}</p>
+        </div>
+      }
+      <button class="btn-sair" (click)="sair()">Sair</button>
     </div>
 
-    <div class="perfil-cards">
-      <div class="perfil-card">
-        <span class="numero">{{ usuario()!.public_repos }}</span>
-        <span class="label">Repositórios</span>
-      </div>
-      <div class="perfil-card">
-        <span class="numero">{{ usuario()!.followers }}</span>
-        <span class="label">Seguidores</span>
-      </div>
-      <div class="perfil-card">
-        <span class="numero">{{ usuario()!.following }}</span>
-        <span class="label">Seguindo</span>
-      </div>
-      <div class="perfil-card">
-        <span class="numero">12</span>
-        <span class="label">Tópicos concluídos</span>
-      </div>
+    <div class="abas">
+      <button
+        class="aba"
+        [class.ativa]="abaAtiva() === 'progresso'"
+        (click)="trocarAba('progresso')">
+        📈 Progresso
+      </button>
+      <button
+        class="aba"
+        [class.ativa]="abaAtiva() === 'repositorios'"
+        (click)="trocarAba('repositorios')">
+        🐙 Repositórios
+      </button>
+      <button
+        class="aba"
+        [class.ativa]="abaAtiva() === 'curriculo'"
+        (click)="trocarAba('curriculo')">
+        📄 Currículo
+      </button>
     </div>
+
+    @if (abaAtiva() === 'progresso') {
+      <div class="aba-conteudo">
+        <div class="progresso-header">
+          <h3>Minha jornada de aprendizado</h3>
+          <span class="badge">{{ totalConcluidos }}/{{ topicos.length }} concluídos</span>
+        </div>
+
+        <div class="barra-container">
+          <div class="barra-fundo">
+            <div class="barra-progresso" [style.width.%]="percentual"></div>
+          </div>
+          <span class="percentual">{{ percentual }}%</span>
+        </div>
+
+        <div class="topicos-grid">
+          @for (topico of topicos; track topico.nome) {
+            <div class="topico-item" [class.concluido]="topico.concluido">
+              <span class="topico-status">{{ topico.concluido ? '✅' : '⏳' }}</span>
+              <span class="topico-nome">{{ topico.nome }}</span>
+              <span class="topico-categoria">{{ topico.categoria }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    @if (abaAtiva() === 'repositorios') {
+      <div class="aba-conteudo">
+        <h3>Repositórios no GitHub</h3>
+        @if (repositorios().length === 0) {
+          <p class="vazio">Nenhum repositório encontrado.</p>
+        } @else {
+          <div class="repos-grid">
+            @for (repo of repositorios(); track repo.id) {
+              <a [href]="repo.html_url" target="_blank" rel="noopener noreferrer" class="repo-card">
+                <h4>{{ repo.name }}</h4>
+                <p>{{ repo.description || 'Sem descrição' }}</p>
+                <div class="repo-meta">
+                  @if (repo.language) {
+                    <span class="repo-lang">{{ repo.language }}</span>
+                  }
+                  <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
+                </div>
+              </a>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    @if (abaAtiva() === 'curriculo') {
+      <div class="aba-conteudo">
+        <div class="curriculo">
+          <div class="curriculo-header">
+            <h3>Marcos Guimarães</h3>
+            <p>Desenvolvedor Front-end em formação</p>
+            <div class="curriculo-contatos">
+              <span>📍 São Gonçalo, RJ</span>
+              <span>🐙 github.com/marcosgmrs</span>
+              <span>🌐 meu-app-angular.vercel.app</span>
+            </div>
+          </div>
+
+          <div class="curriculo-secao">
+            <h4>Objetivo</h4>
+            <p>Desenvolvedor Front-end em transição de carreira, buscando primeira oportunidade como dev júnior com foco em Angular e TypeScript.</p>
+          </div>
+
+          <div class="curriculo-secao">
+            <h4>Tecnologias</h4>
+            <div class="curriculo-tags">
+              <span class="ctag">HTML</span>
+              <span class="ctag">CSS</span>
+              <span class="ctag">JavaScript</span>
+              <span class="ctag">TypeScript</span>
+              <span class="ctag">Angular 18</span>
+              <span class="ctag">Git</span>
+              <span class="ctag">GitHub</span>
+              <span class="ctag">RxJS</span>
+            </div>
+          </div>
+
+          <div class="curriculo-secao">
+            <h4>Projetos</h4>
+            <div class="curriculo-projeto">
+              <strong>meu-app-angular</strong>
+              <p>Aplicação Angular completa com autenticação, rotas protegidas, consumo de APIs REST, formulários reativos e deploy na Vercel.</p>
+              <a href="https://meu-app-angular.vercel.app" target="_blank" rel="noopener noreferrer">meu-app-angular.vercel.app</a>
+            </div>
+          </div>
+
+          <div class="curriculo-secao">
+            <h4>Formação</h4>
+            <p>Aprendizado autodidata intensivo — mais de 2h diárias dedicadas ao desenvolvimento front-end com Angular.</p>
+          </div>
+        </div>
+      </div>
+    }
   }
-
-  <button class="btn-sair" (click)="sair()">Sair da conta</button>
 </div>
