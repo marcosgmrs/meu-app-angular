@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { GithubService, GithubUsuario, GithubRepo } from '../../services/github';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -12,6 +13,8 @@ export class Perfil implements OnInit {
   email = signal('')
   usuario = signal<GithubUsuario | null>(null)
   repositorios = signal<GithubRepo[]>([])
+  private todosRepos: GithubRepo[] = []
+  private termoBusca = new Subject<string>()
   carregando = signal(true)
   abaAtiva = signal('progresso')
 
@@ -54,12 +57,29 @@ export class Perfil implements OnInit {
       this.carregando.set(false)
     })
     this.githubService.getRepositorios().subscribe((repos) => {
+      this.todosRepos = repos
       this.repositorios.set(repos)
+    })
+
+    // Configuração do fluxo RxJS para busca
+    this.termoBusca.pipe(
+      debounceTime(300),           // Espera 300ms após o usuário parar de digitar
+      distinctUntilChanged()      // Só dispara se o termo for diferente do último (ex: seta pro lado)
+    ).subscribe(termo => {
+      const filtrados = this.todosRepos.filter(repo => 
+        repo.name.toLowerCase().includes(termo.toLowerCase())
+      )
+      this.repositorios.set(filtrados)
     })
   }
 
   trocarAba(aba: string): void {
     this.abaAtiva.set(aba)
+  }
+
+  buscarRepositorios(evento: Event): void {
+    const input = evento.target as HTMLInputElement
+    this.termoBusca.next(input.value) // "Abre a torneira" e envia o texto
   }
 
   sair(): void {

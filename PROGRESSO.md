@@ -113,36 +113,29 @@ src/app/
 | 51 | Rotas | `app.routes.ts`, `<router-outlet>`, `routerLink`, `routerLinkActive` |
 | 51 | Navegação programática | `inject(Router)`, `router.navigate(['/perfil'])` |
 | 52 | Reactive Forms | `FormGroup`, `FormControl`, `Validators`, `formulario.valid`, `get email()` |
+| 53 | RxJS e Observables | `Subject`, `pipe`, `debounceTime`, `distinctUntilChanged`, `subscribe`, busca reativa |
 | — | Guard de rota | `CanActivateFn`, `canActivate: [authGuard]`, redirect para `/login` |
 | — | Interceptor HTTP | `HttpInterceptorFn`, adicionar header `Authorization: Bearer token` |
 | — | Página de Perfil | GitHub API, signals, abas, barra de progresso, currículo |
 
 ---
 
-## ⏳ Próxima aula — **Aula 53: RxJS e Observables (de verdade)**
+## ⏳ Próxima aula — **Aula 54: Autenticação com JWT e Interceptors (fundo)**
 
-O aluno **usou RxJS a aula inteira** (`subscribe`, `pipe`, `catchError`, `of`, `filter`) mas **nunca estudou o que é**. É hora de fechar essa lacuna.
+O aluno já tem um interceptor básico, mas precisamos entender como gerenciar o ciclo de vida do token, expiração e segurança real.
 
-### O que cobrir na Aula 53:
+### O que cobrir na Aula 54:
 
-1. **O que é um Observable** — analogia do canal do YouTube (vs Promise = pizza, vs valor = geladeira)
-2. **subscribe** — como "assinar" um Observable
-3. **Operators mais usados:**
-   - `map` — transformar cada valor emitido
-   - `filter` — filtrar valores emitidos
-   - `tap` — espiar sem modificar (útil para debug)
-   - `switchMap` — trocar de Observable (ex: busca em tempo real)
-   - `debounceTime` — esperar o usuário parar de digitar
-   - `distinctUntilChanged` — só emitir se o valor mudou
-4. **Subject e BehaviorSubject** — Observable que você controla
-5. **Aplicação prática:** adicionar busca em tempo real nos repositórios do GitHub na página de Perfil
+1. **O que é JWT** — o "crachá" assinado digitalmente
+2. **Refresh Token (Conceito)** — como manter o usuário logado sem pedir senha toda hora
+3. **Gerenciamento de Estado do Usuário** — evoluir o `estaLogado` do App para algo centralizado
+4. **Tratamento de erro 401** — o que fazer quando o token expira (redirecionamento automático)
 
-### Estado ao iniciar a Aula 53:
+### Estado ao iniciar a Aula 54:
 
-- O professor já deu a explicação conceitual (analogia do YouTube, Promise vs Observable vs valor direto)
-- Mostrou o trecho de `app.ts` que usa `router.events.pipe(filter(...)).subscribe(...)` como exemplo real
-- Estava esperando o `ng serve` subir para começar a prática
-- **O servidor já estava rodando** quando o aluno enviou a última mensagem
+- RxJS concluído com busca reativa no perfil.
+- Próximo passo natural é segurança e autenticação profissional.
+- O aluno já tem uma base de interceptor e guard, vamos aprofundar.
 
 ---
 

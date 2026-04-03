@@ -355,3 +355,32 @@
 .curriculo-projeto a {
   font-size: 13px;
 }
+
+.busca-repos {
+  margin-bottom: 24px;
+}
+
+.busca-repos input {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.busca-repos input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  background: var(--cor-fundo-card);
+  box-shadow: 0 8px 16px rgba(255, 107, 53, 0.1);
+  transform: translateY(-1px);
+}
+
+.busca-repos input::placeholder {
+  color: var(--cor-texto-secundario);
+  opacity: 0.7;
+}

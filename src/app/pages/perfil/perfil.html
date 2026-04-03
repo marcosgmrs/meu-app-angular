@@ -68,6 +68,14 @@
     @if (abaAtiva() === 'repositorios') {
       <div class="aba-conteudo">
         <h3>Repositórios no GitHub</h3>
+        
+        <div class="busca-repos">
+          <input 
+            type="text" 
+            placeholder="Filtrar repositórios..." 
+            (input)="buscarRepositorios($event)">
+        </div>
+
         @if (repositorios().length === 0) {
           <p class="vazio">Nenhum repositório encontrado.</p>
         } @else {
