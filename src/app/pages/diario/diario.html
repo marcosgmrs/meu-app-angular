@@ -1,0 +1,25 @@
+<div class="diario-header">
+  <h2>Diário de Bordo</h2>
+  <p>Registro da jornada — do zero ao desenvolvedor Angular.</p>
+</div>
+
+<div class="chat-viewport">
+  @for (msg of mensagens(); track msg.id) {
+    <div class="mensagem" [class]="msg.autor">
+      <div class="msg-cabecalho">
+        <span class="msg-autor">{{ formatarAutor(msg.autor) }}</span>
+        <span class="msg-data">{{ msg.data }}</span>
+      </div>
+      <div class="msg-corpo">
+        @if (msg.aula) {
+          <span class="badge-aula">{{ msg.aula }}</span>
+        }
+        <p>{{ msg.conteudo }}</p>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="diario-footer">
+  <p>Atualizado a cada nova aula concluída.</p>
+</div>

@@ -1,0 +1,98 @@
+.diario-header {
+  margin-bottom: 40px;
+}
+
+.diario-header h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.diario-header p {
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.chat-viewport {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.mensagem {
+  max-width: 80%;
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+
+.mensagem.professor {
+  align-self: flex-start;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+}
+
+.mensagem.aluno {
+  align-self: flex-end;
+  background: var(--cor-fundo-hover);
+  border: 1px solid var(--cor-borda);
+}
+
+.msg-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.msg-autor {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.mensagem.aluno .msg-autor {
+  color: var(--cor-texto-secundario);
+}
+
+.msg-data {
+  font-size: 11px;
+  color: var(--cor-texto-secundario);
+  font-family: monospace;
+}
+
+.msg-corpo {
+  padding: 14px 16px;
+}
+
+.badge-aula {
+  display: inline-block;
+  padding: 2px 10px;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--cor-primaria);
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.msg-corpo p {
+  font-size: 14px;
+  color: var(--cor-texto-secundario);
+  line-height: 1.7;
+}
+
+.diario-footer {
+  padding: 20px 0;
+  border-top: 1px solid var(--cor-borda);
+  text-align: center;
+}
+
+.diario-footer p {
+  font-size: 12px;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+}
