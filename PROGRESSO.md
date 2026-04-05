@@ -173,6 +173,6 @@ O interceptor foi validado via Network do navegador — funcionando corretamente
   - [x] Guards de rota
   - [x] Interceptors HTTP
   - [x] Lazy Loading
-  - [ ] Resolvers
-  - [ ] Testes unitários
-- [ ] Fase 4 — Projeto 3 (curso escrito em Angular)
+  - [x] Resolvers
+  - [x] Testes unitários
+- [x] Fase 4 — Projeto 3 (curso escrito em Angular)
